@@ -1,0 +1,100 @@
+﻿
+@model ObjetoGenerico
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <h1>Clientes</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Gerenciar</h3>
+
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                    <i class="fas fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var row in Model.Clientes)
+                        {
+                            <tr id="cliente_@row.NumeroChapaId">
+                                <th scope="row">@row.NumeroChapaId</th>
+                                <td>@row.Nome</td>
+                                <td>@row.Sobrenome</td>
+                                <td>@row.Mail</td>
+                                <td><a href="@Url.Action("Editar", "Clientes", new { idCliente = row.NumeroChapaId })"><i class="fa fa-pencil-alt"></i>Editar</a> &nbsp; <a href="#"><i class="fa fa-trash" onclick="DoExcluirCliente(@row.NumeroChapaId)">Excluir</i></a></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+            <a href="@Url.Action("Adicionar", "Clientes")" class="btn btn-primary"><i class="fa fa-plus"></i> Adicionar Cliente</a>
+        </div>
+        <!-- /.card-footer-->
+    </div>
+
+</section>
+<!-- /.content -->
+@section scripts{
+    <script>
+    $(function () {
+        var mensagemErro = '@Model.Erro.Mensagem';
+        if (mensagemErro != null && mensagemErro != "") {
+            alert(mensagemErro);
+        }
+    });
+    function DoExcluirCliente(idCliente) {
+
+        @*
+        var data = JSON.stringify({  });
+        ChamadaAjax('@Url.Content("~/api/Clientes/")' + idCliente, data, "DELETE", ReturnDoExcluirCliente);
+        *@
+
+        var data = { IdCliente: idCliente };
+        ChamadaAjaxNovo('@Url.Action("DoExcluirCliente","Clientes")', data, "POST", ReturnDoExcluirCliente, 'application/x-www-form-urlencoded');
+
+    }
+
+    function ReturnDoExcluirCliente(dados) {
+        if (dados) {
+            if (dados.erro.mensagem != null && dados.erro.mensagem != "") {
+                alert(dados.erro.mensagem);
+            } else {
+                alert("Cliente excluído com sucesso.");
+
+                location.reload();
+            }
+        }
+    }
+
+
+    </script>
+}
+

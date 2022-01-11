@@ -1,0 +1,118 @@
+{
+	"info": {
+		"_postman_id": "a60fd3d6-d662-4d2d-9dbe-d71dfa53380a",
+		"name": "Zup teste",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtem todos os clientes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:6008/api/Cliente",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6008",
+					"path": [
+						"api",
+						"Cliente"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtem cliente pelo id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:6008/api/Cliente/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6008",
+					"path": [
+						"api",
+						"Cliente",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Salva cliente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"numeroChapaId\": 0,\r\n  \"nome\": \"string\",\r\n  \"sobrenome\": \"string\",\r\n  \"mail\": \"user@example.com\",\r\n  \"telefone\": [\r\n    {\r\n      \"id\": 0,\r\n      \"numeroTelefone\": \"41999999999\",\r\n      \"tipoTelefone\": \"string\"\r\n    }\r\n  ],\r\n  \"senha\": \"string\",\r\n  \"dtCadastro\": \"2022-01-11T20:13:18.177Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:6008/api/Cliente",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6008",
+					"path": [
+						"api",
+						"Cliente"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualiza cliente",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"numeroChapaId\": 1,\r\n  \"nome\": \"string\",\r\n  \"sobrenome\": \"atualizado\",\r\n  \"mail\": \"user@example.com\",\r\n  \"telefone\": [\r\n    {\r\n      \"id\": 1,\r\n      \"numeroTelefone\": \"41 991597216\",\r\n      \"tipoTelefone\": \"string\"\r\n    }\r\n  ],\r\n  \"nomeLider\": null,\r\n  \"senha\": \"h6d4s4hol3sjQJXOxvwEnNsIQbE=\",\r\n  \"dtCadastro\": \"0001-01-01T00:00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:6008/api/Cliente/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6008",
+					"path": [
+						"api",
+						"Cliente",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deleta",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		}
+	]
+}

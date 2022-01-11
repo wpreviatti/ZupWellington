@@ -1,3 +1,4 @@
+using ClientAdministrationView.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -22,12 +23,22 @@ namespace ClientAdministrationView
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(AutomapperConfig));
             services.AddControllersWithViews();
+
+            
+            var teste = AppDomain.CurrentDomain.GetAssemblies();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.Use(async (context, next) => {
+                //Do what you want with context,which is HttpContext
+                await next.Invoke();
+                string url = "http://localhost:6008/api/";
+                Utils.APIRequisicao.ConfigRequest(url);
+            });
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -48,6 +59,7 @@ namespace ClientAdministrationView
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
         }
     }
 }
