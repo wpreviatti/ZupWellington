@@ -1,5 +1,7 @@
-﻿using EFClient.Dominio;
+﻿using CryptoWPS;
+using EFClient.Dominio;
 using EFClient.Repo;
+using EFClient.WebApi.Library;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -42,14 +44,18 @@ namespace EFClient.WebApi.Controllers
 
         // GET api/<ClienteController>/5
         [HttpGet("{id}")]
-        public ActionResult Get(int id)
+        public async Task<ActionResult> Get(int id)
         {
             try
             {
-                return Ok();
-
+                var cliente = await _repo.GetById(id);
+                if (cliente != null)
+                {
+                    return Ok(cliente);
+                }
+                return BadRequest("Não foi possivel obter o valor com o id");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex);
             }
@@ -65,6 +71,14 @@ namespace EFClient.WebApi.Controllers
         {
             try
             {
+                #region validação basica
+                if (value == null)
+                    throw new Exception(string.Format("Valor inválido para ser salvo na base de dados! Verifique a documentação e tente novamente"));
+                #endregion
+                #region aplica criptografia
+                value = CustomClientPrepare.CriptografaCliente(value);
+                #endregion
+                value.NumeroChapaId = 0;
                 _repo.Add(value);
                 if (await _repo.SaveChangeAsync())
                 {
@@ -107,8 +121,29 @@ namespace EFClient.WebApi.Controllers
 
         // PUT api/<testeController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<ActionResult> Put(int id, Cliente value)
         {
+            try
+            {
+                var cliente = await _repo.GetById(id);
+                if (cliente != null)
+                {
+                    value.NumeroChapaId = cliente.NumeroChapaId;
+                    #region aplica criptografia
+                    value = CustomClientPrepare.CriptografaCliente(value);
+                    #endregion
+                    _repo.Update(value);
+                    if (await _repo.SaveChangeAsync())
+                    {
+                        return Ok(value);
+                    }
+                }
+                return BadRequest("Não foi possivel fazer o update");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
     }
 }

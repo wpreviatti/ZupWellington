@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFClient.Dominio", "EFClien
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFClient.Repo", "EFClient.Repo\EFClient.Repo.csproj", "{15283EE0-818E-426D-9367-F2E3DDA5EEA6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoWPS", "CryptoWPS\CryptoWPS.csproj", "{4613D7E0-22C8-4AFD-BB77-BA0A25AB15C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{15283EE0-818E-426D-9367-F2E3DDA5EEA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15283EE0-818E-426D-9367-F2E3DDA5EEA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15283EE0-818E-426D-9367-F2E3DDA5EEA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4613D7E0-22C8-4AFD-BB77-BA0A25AB15C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4613D7E0-22C8-4AFD-BB77-BA0A25AB15C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4613D7E0-22C8-4AFD-BB77-BA0A25AB15C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4613D7E0-22C8-4AFD-BB77-BA0A25AB15C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
