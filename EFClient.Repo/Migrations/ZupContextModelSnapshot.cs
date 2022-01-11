@@ -48,9 +48,6 @@ namespace EFClient.Repo.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Telefone")
-                        .HasColumnType("int");
-
                     b.HasKey("NumeroChapaId");
 
                     b.HasIndex("NomeLiderNumeroChapaId");
@@ -58,11 +55,42 @@ namespace EFClient.Repo.Migrations
                     b.ToTable("Cliente");
                 });
 
+            modelBuilder.Entity("EFClient.Dominio.Telefone", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("ClienteNumeroChapaId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NumeroTelefone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TipoTelefone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClienteNumeroChapaId");
+
+                    b.ToTable("Telefone");
+                });
+
             modelBuilder.Entity("EFClient.Dominio.Cliente", b =>
                 {
                     b.HasOne("EFClient.Dominio.Cliente", "NomeLider")
                         .WithMany()
                         .HasForeignKey("NomeLiderNumeroChapaId");
+                });
+
+            modelBuilder.Entity("EFClient.Dominio.Telefone", b =>
+                {
+                    b.HasOne("EFClient.Dominio.Cliente", null)
+                        .WithMany("Telefone")
+                        .HasForeignKey("ClienteNumeroChapaId");
                 });
 #pragma warning restore 612, 618
         }

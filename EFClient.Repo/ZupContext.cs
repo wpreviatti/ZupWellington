@@ -16,6 +16,7 @@ namespace EFClient.Repo
         }
         public ZupContext(DbContextOptions<ZupContext> options) : base(options) {}
         public DbSet<Cliente> Cliente { get; set; }
+        public DbSet<Telefone> Telefone { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var builder = new SqlConnectionStringBuilder

@@ -11,6 +11,12 @@
     <Compile Remove="Migrations\20220111014639_inicio.Designer.cs" />
     <Compile Remove="Migrations\20220111020100_init.cs" />
     <Compile Remove="Migrations\20220111020100_init.Designer.cs" />
+    <Compile Remove="Migrations\20220111031817_init.cs" />
+    <Compile Remove="Migrations\20220111031817_init.Designer.cs" />
+    <Compile Remove="Migrations\20220111051543_init.cs" />
+    <Compile Remove="Migrations\20220111051543_init.Designer.cs" />
+    <Compile Remove="Migrations\20220111052029_init.cs" />
+    <Compile Remove="Migrations\20220111052029_init.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

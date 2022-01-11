@@ -37,21 +37,21 @@ namespace EFClient.Repo
 
         public async Task<IEnumerable<Cliente>> GetAll()
         {
-            IQueryable<Cliente> query = _contexto.Cliente.Include(h => h.NomeLider);
+            IQueryable<Cliente> query = _contexto.Cliente.Include(h => h.NomeLider).Include(h=>h.Telefone);
             query = query.AsNoTracking().OrderBy(or => or.NumeroChapaId);
             return await query.ToListAsync();
         }
 
         public async Task<Cliente> GetById(int id)
         {
-            IQueryable<Cliente> query = _contexto.Cliente.Include(h => h.NomeLider);
+            IQueryable<Cliente> query = _contexto.Cliente.Include(h => h.NomeLider).Include(h => h.Telefone);
             query = query.AsNoTracking().Where(w => w.NumeroChapaId == id);
             return await query.FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<Cliente>> GetByNome(string nome)
         {
-            IQueryable<Cliente> query = _contexto.Cliente.Include(h => h.NomeLider);
+            IQueryable<Cliente> query = _contexto.Cliente.Include(h => h.NomeLider).Include(h => h.Telefone);
             query = query.AsNoTracking().Where(w=>w.Nome.Contains(nome))
                 .OrderBy(or => or.NumeroChapaId);
             return await query.ToListAsync();

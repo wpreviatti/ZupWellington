@@ -19,7 +19,7 @@ namespace EFClient.Dominio
         [Required(AllowEmptyStrings = false, ErrorMessage = "Informe o email.")]
         [EmailAddress(ErrorMessage = "Informe um email válido.")]
         public string Mail { get; set; }
-        public int Telefone { get; set; }
+        public List<Telefone> Telefone { get; set; }
         public Cliente NomeLider { get; set; }
         [Required(ErrorMessage = "Informe a senha.")]
         [MinLength(6, ErrorMessage = "A senha deve ter um tamanho mínimo 6 caracteres")]
